@@ -1,0 +1,19 @@
+trigger:
+- master
+
+jobs:
+- job: Build
+  timeoutInMinutes: 240
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - script: |
+      choco sources add -n=roswin -s https://roswin.azurewebsites.net/api/v2/ --priority 1
+      choco install hg
+      choco install boost
+  - script: |
+      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      hg clone https://bitbucket.org/osrf/gazebo gazebo9
+      mkdir gazebo\build & cd gazebo\build
+      cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
+      nmake install
