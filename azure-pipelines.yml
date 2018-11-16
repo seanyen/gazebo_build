@@ -40,6 +40,7 @@ jobs:
       cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
       nmake install
   - script: |
+      set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
       call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       mkdir ign-msgs\build & cd ign-msgs\build
       cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
