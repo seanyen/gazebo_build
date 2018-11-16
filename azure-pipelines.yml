@@ -18,12 +18,15 @@ jobs:
       choco install dlfcn-win32
       choco install libcurl
       choco install ogre
+      choco install zeromq
+      choco install cppzmq
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
       hg clone https://bitbucket.org/ignitionrobotics/ign-cmake -r ign-cmake0
       hg clone https://bitbucket.org/ignitionrobotics/ign-math -r ign-math4
       hg clone https://bitbucket.org/osrf/sdformat -r sdf6
       hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ign-msgs1
+      hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r default
       hg clone https://bitbucket.org/ignitionrobotics/ign-transport -r ign-transport4
       hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9
   - script: |
@@ -49,6 +52,11 @@ jobs:
       nmake install
   - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      mkdir ign-tools\build & cd ign-tools\build
+      cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
+      nmake install
+  - script: |
+      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       mkdir ign-transport\build & cd ign-transport\build
       cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
       nmake install
@@ -60,3 +68,4 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: 'c:\opt'
+    condition: always()
