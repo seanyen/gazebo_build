@@ -11,8 +11,9 @@ jobs:
       choco sources add -n=roswin -s https://roswin.azurewebsites.net/api/v2/ --priority 1
       choco install hg
       choco install boost
-      choco install pkg-confg
+      choco install pkg-config
       choco install freeimage
+      choco install protobuf
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
       call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
