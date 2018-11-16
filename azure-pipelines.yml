@@ -14,7 +14,7 @@ jobs:
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
       call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-      hg clone https://bitbucket.org/osrf/gazebo gazebo9
+      hg clone https://bitbucket.org/osrf/gazebo -r gazebo9
       mkdir gazebo\build & cd gazebo\build
       cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
       nmake install
