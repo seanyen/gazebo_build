@@ -14,6 +14,7 @@ jobs:
       choco install pkg-config
       choco install freeimage
       choco install protobuf
+      choco install qt5-sdk
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
       hg clone https://bitbucket.org/ignitionrobotics/ign-cmake -r ign-cmake0
