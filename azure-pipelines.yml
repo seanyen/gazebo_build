@@ -27,7 +27,7 @@ jobs:
       hg clone https://bitbucket.org/osrf/sdformat -r sdf6
       hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ign-msgs1
       hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r default
-      hg clone https://bitbucket.org/ignitionrobotics/ign-transport -r ign-transport4
+      hg clone https://bitbucket.org/seanyen-msft/ign-transport -r ign-transport4
       hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9
   - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
