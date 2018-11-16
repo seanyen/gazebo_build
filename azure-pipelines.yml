@@ -12,7 +12,7 @@ jobs:
       choco install hg
       choco install boost
   - script: |
-      set "PATH=C:\Program Files\Mercurial\hg.exe;%PATH%"
+      set "PATH=C:\Program Files\Mercurial;%PATH%"
       call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       hg clone https://bitbucket.org/osrf/gazebo gazebo9
       mkdir gazebo\build & cd gazebo\build
