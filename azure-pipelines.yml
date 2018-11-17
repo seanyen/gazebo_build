@@ -20,6 +20,8 @@ jobs:
       choco install ogre
       choco install zeromq
       choco install cppzmq
+      choco install tbb
+      choco install qwt
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
       hg clone https://bitbucket.org/ignitionrobotics/ign-cmake -r ign-cmake0
