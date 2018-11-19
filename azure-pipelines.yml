@@ -70,4 +70,5 @@ jobs:
       nmake install
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: 'c:\opt'
+      pathtoPublish: '$(Build.SourcesDirectory)\gazebo\build'
+    condition: always()
