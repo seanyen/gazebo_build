@@ -26,7 +26,7 @@ jobs:
       set "PATH=C:\Program Files\Mercurial;%PATH%"
       hg clone https://bitbucket.org/ignitionrobotics/ign-cmake -r ign-cmake0
       hg clone https://bitbucket.org/ignitionrobotics/ign-math -r ign-math4
-      hg clone https://bitbucket.org/osrf/sdformat -r sdf6-windows_fixes
+      hg clone https://bitbucket.org/seanyen-msft/sdformat -r sdf6
       hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ign-msgs1
       hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r default
       hg clone https://bitbucket.org/seanyen-msft/ign-transport -r ign-transport4
