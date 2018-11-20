@@ -32,42 +32,42 @@ jobs:
       hg clone https://bitbucket.org/seanyen-msft/ign-transport -r ign-transport4
       hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9
   - script: |
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      call "setup.bat"
       mkdir ign-cmake\build & cd ign-cmake\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
-      nmake install
+      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
+      ninja install
   - script: |
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      call "setup.bat"
       mkdir ign-math\build & cd ign-math\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
-      nmake install
+      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
+      ninja install
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      call "setup.bat"
       mkdir ign-msgs\build & cd ign-msgs\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
-      nmake install
+      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
+      ninja install
   - script: |
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      call "setup.bat"
       mkdir ign-tools\build & cd ign-tools\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
-      nmake install
+      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
+      ninja install
   - script: |
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      call "setup.bat"
       mkdir ign-transport\build & cd ign-transport\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
-      nmake install
+      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
+      ninja install
   - script: |
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      call "setup.bat"
       mkdir sdformat\build & cd sdformat\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
-      nmake install
+      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
+      ninja install
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: 'c:\opt'
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+      call "setup.bat"
       mkdir gazebo\build & cd gazebo\build
-      cmake --debug-output -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
-      nmake install
+      cmake --debug-output -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
+      ninja install
