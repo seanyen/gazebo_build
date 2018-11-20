@@ -62,9 +62,6 @@ jobs:
       mkdir sdformat\build & cd sdformat\build
       cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
       ninja install
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: 'c:\opt'
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
       call "setup.bat"
