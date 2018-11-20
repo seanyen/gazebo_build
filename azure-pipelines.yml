@@ -62,13 +62,12 @@ jobs:
       mkdir sdformat\build & cd sdformat\build
       cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
       nmake install
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: 'c:\opt'
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
       call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       mkdir gazebo\build & cd gazebo\build
       cmake --debug-output -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "NMake Makefiles" ..
       nmake install
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(Build.SourcesDirectory)\gazebo\build'
-    condition: always()
