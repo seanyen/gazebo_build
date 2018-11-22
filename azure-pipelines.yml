@@ -1,3 +1,6 @@
+variables:
+  GAZEBO_INSTALL_PREFIX: 'c:\opt\rosdeps\x64'
+
 trigger:
 - master
 
@@ -9,19 +12,9 @@ jobs:
   steps:
   - script: |
       choco sources add -n=roswin -s https://roswin.azurewebsites.net/api/v2/ --priority 1
-      choco install hg
-      choco install boost
-      choco install pkg-config
-      choco install freeimage
-      choco install protobuf
-      choco install qt5-sdk
-      choco install dlfcn-win32
-      choco install libcurl
-      choco install ogre
-      choco install zeromq
-      choco install cppzmq
-      choco install tbb
-      choco install qwt
+      choco upgrade hg 7zip
+      choco upgrade pkg-config boost freeimage protobuf qt5-sdk dlfcn-win32 libcurl ogre zeromq cppzmq tbb qwt
+    displayName: Install system dependencies
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
       hg clone https://bitbucket.org/ignitionrobotics/ign-cmake -r ign-cmake0
@@ -31,44 +24,33 @@ jobs:
       hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r default
       hg clone https://bitbucket.org/seanyen-msft/ign-transport -r ign-transport4
       hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9
+    displayName: Get sources
   - script: |
-      call "setup.bat"
-      mkdir ign-cmake\build & cd ign-cmake\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
-      ninja install
+      call "build.bat" ign-cmake
+    displayName: ign-cmake
   - script: |
-      call "setup.bat"
-      mkdir ign-math\build & cd ign-math\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
-      ninja install
+      call "build.bat" ign-math
+    displayName: ign-math
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
-      call "setup.bat"
-      mkdir ign-msgs\build & cd ign-msgs\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
-      ninja install
+      call "build.bat" ign-msgs
+    displayName: ign-msgs
   - script: |
-      call "setup.bat"
-      mkdir ign-tools\build & cd ign-tools\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
-      ninja install
+      call "build.bat" ign-tools
+    displayName: ign-tools
   - script: |
-      call "setup.bat"
-      mkdir ign-transport\build & cd ign-transport\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
-      ninja install
+      call "build.bat" ign-transport
+    displayName: ign-transport
   - script: |
-      call "setup.bat"
-      mkdir sdformat\build & cd sdformat\build
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
-      ninja install
+      call "build.bat" sdformat
+    displayName: sdformat
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
-      call "setup.bat"
-      mkdir gazebo\build & cd gazebo\build
-      cmake --debug-output -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=c:\opt\rosdeps\x64 -DCMAKE_INSTALL_PREFIX=c:\opt\rosdeps\x64 -G "Ninja" ..
-      ninja install
+      call "build.bat" gazebo "--debug-output -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON"
+    displayName: gazebo
+  - script: |
+      powershell.exe -noexit -file "copy_binaries.ps1"
+    displayName: Copy binaries
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: 'c:\opt'
       artifactName: 'opt'
