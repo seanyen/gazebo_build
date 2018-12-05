@@ -46,7 +46,7 @@ jobs:
     displayName: sdformat
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
-      call "build.bat" gazebo "--debug-output -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DCMAKE_VERBOSE_MAKEFILE=ON"
+      call "build.bat" gazebo "--debug-output -DCMAKE_VERBOSE_MAKEFILE=ON"
     displayName: gazebo
   - script: |
       powershell.exe -noexit -file "copy_binaries.ps1"
