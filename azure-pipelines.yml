@@ -25,7 +25,7 @@ jobs:
       hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ign-msgs1
       hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r default
       hg clone https://bitbucket.org/seanyen-msft/ign-transport -r ign-transport4
-      hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9
+      hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9_9.5.0_windows
     displayName: Get sources
   - script: |
       call "build.bat" ign-cmake
