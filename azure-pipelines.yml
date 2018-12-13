@@ -28,11 +28,11 @@ jobs:
       hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9_9.5.0_windows
     displayName: Get sources
   - script: |
-      call "build.bat" ign-cmake
-    displayName: ign-cmake "-DBUILD_TESTING:BOOL=False"
+      call "build.bat" ign-cmake "-DBUILD_TESTING:BOOL=False"
+    displayName: ign-cmake
   - script: |
-      call "build.bat" ign-math
-    displayName: ign-math "-DBUILD_TESTING:BOOL=False"
+      call "build.bat" ign-math "-DBUILD_TESTING:BOOL=False"
+    displayName: ign-math
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
       call "build.bat" ign-msgs "-DBUILD_TESTING:BOOL=False"
