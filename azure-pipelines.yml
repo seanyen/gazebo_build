@@ -19,9 +19,9 @@ jobs:
     displayName: Install system dependencies
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
-      hg clone https://bitbucket.org/ignitionrobotics/ign-cmake -r ignition-cmake_0.6.1
+      hg clone https://bitbucket.org/seanyen-msft/ign-cmake -r ignition-cmake_0.6.1_windows
       hg clone https://bitbucket.org/ignitionrobotics/ign-math -r ignition-math4_4.0.0
-      hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ignition-msgs1_1.0.0
+      hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ignition-msgs_1.0.0
       hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r ignition-tools_0.1.0
       hg clone https://bitbucket.org/ignitionrobotics/ign-transport -r ignition-transport4_4.0.0
       hg clone https://bitbucket.org/osrf/sdformat -r sdformat6_6.1.0
