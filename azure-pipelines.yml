@@ -19,12 +19,12 @@ jobs:
     displayName: Install system dependencies
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
-      hg clone https://bitbucket.org/seanyen-msft/ign-cmake -r ign-cmake0_windows
+      hg clone https://bitbucket.org/ignitionrobotics/ign-cmake -r ignition-cmake_0.6.1
       hg clone https://bitbucket.org/ignitionrobotics/ign-math -r ignition-math4_4.0.0
-      hg clone https://bitbucket.org/osrf/sdformat -r sdformat6_6.1.0
       hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ignition-msgs1_1.0.0
       hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r ignition-tools_0.1.0
       hg clone https://bitbucket.org/ignitionrobotics/ign-transport -r ignition-transport4_4.0.0
+      hg clone https://bitbucket.org/osrf/sdformat -r sdformat6_6.1.0
       hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9_9.5.0_windows
     displayName: Get sources
   - script: |
@@ -34,12 +34,12 @@ jobs:
       call "build.bat" ign-math "-DBUILD_TESTING:BOOL=False"
     displayName: ign-math
   - script: |
+      call "build.bat" ign-tools "-DBUILD_TESTING:BOOL=False"
+    displayName: ign-tools
+  - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
       call "build.bat" ign-msgs "-DBUILD_TESTING:BOOL=False"
     displayName: ign-msgs
-  - script: |
-      call "build.bat" ign-tools "-DBUILD_TESTING:BOOL=False"
-    displayName: ign-tools
   - script: |
       call "build.bat" ign-transport "-DBUILD_TESTING:BOOL=False"
     displayName: ign-transport
