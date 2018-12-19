@@ -56,7 +56,7 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       artifactName: 'opt'
-- job: 'OSRF CI'
+- job: OSRF
   timeoutInMinutes: 240
   pool:
     vmImage: 'vs2017-win2016'
