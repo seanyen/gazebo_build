@@ -93,7 +93,7 @@ jobs:
       choco upgrade hg wget -y
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
-      hg clone https://bitbucket.org/osrf/release-tools scripts -r update_gazebo9_build
+      hg clone https://bitbucket.org/osrf/release-tools scripts -r gazebo_win_make_tests
       hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9_windows_staging
       set MAKE_JOBS=%NUMBER_OF_PROCESSORS%
       set WORKSPACE=%CD%
