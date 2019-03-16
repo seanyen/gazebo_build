@@ -56,34 +56,6 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       artifactName: 'opt'
-- job: OSRF
-  timeoutInMinutes: 240
-  pool:
-    vmImage: 'vs2017-win2016'
-  steps:
-  - script: |
-      choco upgrade hg wget -y
-  - script: |
-      set "PATH=C:\Program Files\Mercurial;%PATH%"
-      hg clone https://bitbucket.org/seanyen-msft/release-tools scripts -r default_staging
-      hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9_9.5.0_staging
-      set MAKE_JOBS=%NUMBER_OF_PROCESSORS%
-      set WORKSPACE=%CD%
-      call ".\scripts\jenkins-scripts\gazebo-default-devel-windows7-amd64.bat"
-- job: OSRF_integration
-  timeoutInMinutes: 240
-  pool:
-    vmImage: 'vs2017-win2016'
-  steps:
-  - script: |
-      choco upgrade hg wget -y
-  - script: |
-      set "PATH=C:\Program Files\Mercurial;%PATH%"
-      hg clone https://bitbucket.org/osrf/release-tools scripts -r update_gazebo9_build
-      hg clone https://bitbucket.org/osrf/gazebo -r gazebo9.5.0_seanyen-msft
-      set MAKE_JOBS=%NUMBER_OF_PROCESSORS%
-      set WORKSPACE=%CD%
-      call ".\scripts\jenkins-scripts\gazebo-default-devel-windows7-amd64.bat"
 - job: OSRF_integration_staging
   timeoutInMinutes: 240
   pool:
@@ -93,7 +65,7 @@ jobs:
       choco upgrade hg wget -y
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
-      hg clone https://bitbucket.org/osrf/release-tools scripts -r gazebo_win_make_tests
+      hg clone https://bitbucket.org/osrf/release-tools scripts -r default
       hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9_windows_staging
       set MAKE_JOBS=%NUMBER_OF_PROCESSORS%
       set WORKSPACE=%CD%
