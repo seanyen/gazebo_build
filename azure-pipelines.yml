@@ -19,13 +19,13 @@ jobs:
     displayName: Install system dependencies
   - script: |
       set "PATH=C:\Program Files\Mercurial;%PATH%"
-      hg clone https://bitbucket.org/seanyen-msft/ign-cmake -r ignition-cmake_0.6.1_windows
-      hg clone https://bitbucket.org/ignitionrobotics/ign-math -r ignition-math4_4.0.0
-      hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ignition-msgs_1.0.0
-      hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r ignition-tools_0.1.0
-      hg clone https://bitbucket.org/ignitionrobotics/ign-transport -r ignition-transport4_4.0.0
-      hg clone https://bitbucket.org/seanyen-msft/sdformat -r sdformat6_6.1.0_windows
-      hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9_9.5.0_windows
+      hg clone https://bitbucket.org/ignitionrobotics/ign-cmake -r ign-cmake0
+      hg clone https://bitbucket.org/ignitionrobotics/ign-math -r ign-math4
+      hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ign-msgs1
+      hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r ign-tools0
+      hg clone https://bitbucket.org/ignitionrobotics/ign-transport -r ign-transport4
+      hg clone https://bitbucket.org/osrf/sdformat -r sdformat6_6.2.0
+      hg clone https://bitbucket.org/osrf/gazebo -r gazebo9
     displayName: Get sources
   - script: |
       call "build.bat" ign-cmake "-DBUILD_TESTING:BOOL=False"
