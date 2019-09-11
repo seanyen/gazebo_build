@@ -28,23 +28,23 @@ jobs:
       hg clone https://bitbucket.org/osrf/gazebo -r gazebo9
     displayName: Get sources
   - script: |
-      call "build.bat" ign-cmake "-DBUILD_TESTING:BOOL=False"
+      call "build.bat" ign-cmake "-DBUILD_TESTING:BOOL=False -DCMAKE_VERBOSE_MAKEFILE=ON"
     displayName: ign-cmake
   - script: |
-      call "build.bat" ign-math "-DBUILD_TESTING:BOOL=False"
+      call "build.bat" ign-math "-DBUILD_TESTING:BOOL=False -DCMAKE_VERBOSE_MAKEFILE=ON"
     displayName: ign-math
   - script: |
-      call "build.bat" ign-tools "-DBUILD_TESTING:BOOL=False"
+      call "build.bat" ign-tools "-DBUILD_TESTING:BOOL=False -DCMAKE_VERBOSE_MAKEFILE=ON"
     displayName: ign-tools
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
-      call "build.bat" ign-msgs "-DBUILD_TESTING:BOOL=False"
+      call "build.bat" ign-msgs "-DBUILD_TESTING:BOOL=False -DCMAKE_VERBOSE_MAKEFILE=ON"
     displayName: ign-msgs
   - script: |
-      call "build.bat" ign-transport "-DBUILD_TESTING:BOOL=False"
+      call "build.bat" ign-transport "-DBUILD_TESTING:BOOL=False -DCMAKE_VERBOSE_MAKEFILE=ON"
     displayName: ign-transport
   - script: |
-      call "build.bat" sdformat "-DBUILD_TESTING:BOOL=False"
+      call "build.bat" sdformat "-DBUILD_TESTING:BOOL=False -DCMAKE_VERBOSE_MAKEFILE=ON"
     displayName: sdformat
   - script: |
       set PATH=C:\opt\rosdeps\x64\tools\protobuf;%PATH%
@@ -56,17 +56,3 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       artifactName: 'opt'
-- job: OSRF_integration_staging
-  timeoutInMinutes: 240
-  pool:
-    vmImage: 'vs2017-win2016'
-  steps:
-  - script: |
-      choco upgrade hg wget -y
-  - script: |
-      set "PATH=C:\Program Files\Mercurial;%PATH%"
-      hg clone https://bitbucket.org/osrf/release-tools scripts -r default
-      hg clone https://bitbucket.org/seanyen-msft/gazebo -r gazebo9_windows_staging
-      set MAKE_JOBS=%NUMBER_OF_PROCESSORS%
-      set WORKSPACE=%CD%
-      call ".\scripts\jenkins-scripts\gazebo-default-devel-windows7-amd64.bat"
