@@ -13,9 +13,7 @@ jobs:
     vmImage: 'windows-2019'
   steps:
   - script: |
-      dir c:
       rd /s /q "C:\Program Files (x86)\Android"
-      dir c:
     displayName: Clean unused toolchains
   - script: |
       choco sources add -n=roswin -s https://roswin.azurewebsites.net/api/v2/ --priority 1
