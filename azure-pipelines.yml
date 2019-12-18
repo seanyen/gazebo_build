@@ -13,7 +13,7 @@ jobs:
     vmImage: 'windows-2019'
   steps:
   - script: |
-      rd /s /q "C:\Program Files (x86)\Android"
+      :: rd /s /q "C:\Program Files (x86)\Android"
     displayName: Clean unused toolchains
   - script: |
       choco sources add -n=roswin -s https://roswin.azurewebsites.net/api/v2/ --priority 1
@@ -27,7 +27,7 @@ jobs:
       hg clone https://bitbucket.org/ignitionrobotics/ign-msgs -r ign-msgs1
       hg clone https://bitbucket.org/ignitionrobotics/ign-tools -r ign-tools0
       hg clone https://bitbucket.org/ignitionrobotics/ign-transport -r ign-transport4
-      hg clone https://bitbucket.org/osrf/sdformat -r sdformat6_6.2.0
+      hg clone https://bitbucket.org/osrf/sdformat -r sdformat6_6.1.0_windows
       hg clone https://bitbucket.org/osrf/gazebo -r gazebo9
     displayName: Get sources
   - script: |
